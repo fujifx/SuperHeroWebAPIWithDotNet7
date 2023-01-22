@@ -18,7 +18,7 @@ namespace SuperHeroWebAPIWithDotNet7.Controllers
         [HttpGet]
         public async Task<ActionResult<List<SuperHero>>> GetAllHeroes()
         {
-            return _superHeroService.GetAllSuperHeroes();
+            return await _superHeroService.GetAllSuperHeroes();
         }
 
         [HttpGet("{id}")]
@@ -28,7 +28,7 @@ namespace SuperHeroWebAPIWithDotNet7.Controllers
         */
         public async Task<ActionResult<SuperHero>> GetSingleHero(int id)
         {
-            var result = _superHeroService.GetSingleHero(id);
+            var result = await _superHeroService.GetSingleHero(id);
 
             if (result == null)
                 return NotFound("Sorry, this hero isn't conceived yet! Keep dreaming!!!");
@@ -39,14 +39,14 @@ namespace SuperHeroWebAPIWithDotNet7.Controllers
         [HttpPost]
         public async Task<ActionResult<List<SuperHero>>> AddHero(SuperHero request)
         {
-            var result = _superHeroService.AddHero(request);
+            var result = await _superHeroService.AddHero(request);
             return Ok(result);
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<SuperHero>> UpdateHero(int id, SuperHero request)
         {
-            var result = _superHeroService.UpdateHero(id, request);
+            var result = await _superHeroService.UpdateHero(id, request);
 
             if (result == null)
                 return NotFound("Sorry, this hero isn't conceived yet! Keep dreaming!!!");
@@ -57,7 +57,7 @@ namespace SuperHeroWebAPIWithDotNet7.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult<SuperHero>> DeleteHero(int id)
         {
-            var result = _superHeroService.DeleteHero(id);
+            var result = await _superHeroService.DeleteHero(id);
 
             if (result == null)
                 return NotFound("Sorry, this hero isn't conceived yet! Keep dreaming!!!");
