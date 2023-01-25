@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SuperHeroWebAPIWithDotNet7.Services.SuperHeroService;
 
@@ -15,7 +16,7 @@ namespace SuperHeroWebAPIWithDotNet7.Controllers
             _superHeroService = superHeroService;
         }
 
-        [HttpGet]
+        [HttpGet(Name = "GetAllHeroes"), Authorize(Roles = "Admin")]
         public async Task<ActionResult<List<SuperHero>>> GetAllHeroes()
         {
             return await _superHeroService.GetAllSuperHeroes();
